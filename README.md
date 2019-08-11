@@ -16,7 +16,7 @@ If you're not with [PDX Hackerspace](https://pdxhackerspace.org) (otherwise know
 ```
 git clone https://github.com/HomeBusProjects/homebus-ctrlh-access
 cd homebus-ctrlh-access
-``
+```
 
 2. Install the needed gems
 ```
