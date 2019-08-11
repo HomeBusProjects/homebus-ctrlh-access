@@ -1,7 +1,6 @@
 require 'sinatra/base'
 require 'mqtt'
 
-require 'pp'
 require 'json'
 
 require './message'
@@ -41,8 +40,6 @@ class AccessWebhook < Sinatra::Base
             person: msg.person,
             timestamp: Time.now.to_i
           }
-
-      pp m
 
       mqtt.publish '/homebus/device/' + uuid,
                    JSON.pretty_generate(m),
