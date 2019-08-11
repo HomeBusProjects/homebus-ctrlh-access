@@ -37,6 +37,15 @@ puma -p 9393 access.ru
 
 This tells Puma to execute the Sinatra app in access.ru and bind it to port 9393. The Nginx configuration file in step 5 depends on port number 9393; if you change the port you'll need to change the Nginx configuration as well.
 
+If your server supports systemd, you may wish to install the systemd script located in `systemd/homebus-ctrlh-access.service`. Copy it to `/etc/systemd/system` and run:
+```
+sudo systemctl daemon-reload
+sudo systemctl enable homebus-ctrlh-access
+sudo systemctl start homebus-ctrlh-access
+```
+
+You'll need to edit the file if you don't install `homebus-ctrlh-access` in the location expected in the file.
+
 5. Configure nginx
 ```
 sudo cp nginx/access-webhook.conf /etc/nginx/sites-available/

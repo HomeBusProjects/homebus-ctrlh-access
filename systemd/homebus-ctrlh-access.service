@@ -1,0 +1,17 @@
+[Unit]
+Description=HomeBus Access publisher for PDX Hackerspace
+After=network.target
+
+[Service]
+Type=simple
+
+User=homebus
+WorkingDirectory=/home/homebus/homebus-ctrlh-access
+
+ExecStart=/home/homebus/.rbenv/bin/rbenv exec bundle exec puma -p 9393 access.ru
+
+TimeoutSec=30
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
