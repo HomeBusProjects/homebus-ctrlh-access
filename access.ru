@@ -38,6 +38,11 @@ class AccessWebhook < Sinatra::Base
             door: msg.door,
             action: msg.action,
             person: msg.person,
+            'org.pdxhackerspace.access': {
+                                           door: msg.door,
+                                           action: msg.action,
+                                           person: msg.person,
+                                         },
             timestamp: Time.now.to_i
           }
 
