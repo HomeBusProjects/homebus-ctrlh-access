@@ -49,6 +49,8 @@ class AccessWebhook < Sinatra::Base
       mqtt.publish '/homebus/device/' + uuid,
                    JSON.pretty_generate(m),
                    true
+
+#      publish! JSON.pretty_generate(m)
     else
       m[:error] = true
       m[:msg] = "Cannot find door #{msg.door}"

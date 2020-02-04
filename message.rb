@@ -19,7 +19,7 @@ class AccessMessage
     when /(\S+ \S+|\.)\W+(enabled|disabled) laser-access/
       @person = $1
       @action = $2
-      @door = nil
+      @door = 'laser-access'
     when /A card was presented at (unit\d \S+ door|front craft lab) and access was denied/
       @person = nil
       @action = 'access denied'
