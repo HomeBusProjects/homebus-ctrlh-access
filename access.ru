@@ -7,6 +7,7 @@ require './message'
 
 class AccessWebhook < Sinatra::Base
   CONFIG_FILE='.access.json'
+  DDC = 'org.pdxhackerspace.experimental.access'
 
   homebus_config = []
 
@@ -33,20 +34,22 @@ class AccessWebhook < Sinatra::Base
     configs = homebus_config.select { |x| x[:door] == msg.door }
     if configs.first
       uuid = configs.first[:uuid]
+      timestamp = Time.now.to_i
 
-      m = { id: uuid,
-            door: msg.door,
-            action: msg.action,
-            person: msg.person,
-            'org.pdxhackerspace.access': {
-                                           door: msg.door,
-                                           action: msg.action,
-                                           person: msg.person,
-                                         },
-            timestamp: Time.now.to_i
+      m = { source: uuid,
+            timestamp: timestamp,
+            contents: {
+              ddc: DDC,
+              payload: {
+                door: msg.door,
+                action: msg.action,
+                person: msg.person,
+                timestamp: timestamp
+              }
+            }
           }
 
-      mqtt.publish '/homebus/device/' + uuid,
+      mqtt.publish 'homebus/device/' + uuid + '/' + DDC,
                    JSON.pretty_generate(m),
                    true
 

@@ -1,8 +1,8 @@
 GIT
   remote: git@github.com:HomeBusProjects/ruby-homebus-application
-  revision: 018dc724c82bc8627f961186faadf1187baa5f36
+  revision: ddad977a473545fbc1a299d27a739f384b8861e2
   specs:
-    homebus_app (0.1.1)
+    homebus_app (0.9.1)
       dotenv
       mqtt
 
@@ -15,7 +15,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    dotenv (2.7.5)
+    dotenv (2.7.6)
     mqtt (0.5.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
@@ -44,4 +44,4 @@ DEPENDENCIES
   sinatra
 
 BUNDLED WITH
-   2.0.1
+   2.1.2
