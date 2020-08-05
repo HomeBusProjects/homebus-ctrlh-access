@@ -32,7 +32,7 @@ This will generate a Homebus provisioning request for each door. The list of doo
 
 4. Run the webhook server
 ```
-puma -p 9393 access.ru
+bundle exec puma -p 9393 access.ru
 ```
 
 This tells Puma to execute the Sinatra app in access.ru and bind it to port 9393. The Nginx configuration file in step 5 depends on port number 9393; if you change the port you'll need to change the Nginx configuration as well.
