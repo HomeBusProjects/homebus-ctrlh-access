@@ -1,47 +1,25 @@
 GIT
-  remote: git@github.com:HomeBusProjects/ruby-homebus-application
-  revision: 44834e453a8d2c1c9009364dd5e72994f1a386b3
-  specs:
-    homebus_app (0.9.6)
-      dotenv
-      mqtt
-
-GIT
   remote: https://github.com/HomeBusProjects/ruby-homebus
-  revision: 64d64f26adf2e82d4c8cb7219bdd534f2275f817
+  revision: 507710f5b9892f8726eaebc9c7c4d97a8b05f96d
+  tag: v0.22.0
   specs:
-    homebus (0.3.1)
+    homebus (0.22.0)
+      mqtt (~> 0.5.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
+    cgi (0.3.2)
     dotenv (2.7.6)
     mqtt (0.5.0)
-    mustermann (1.1.1)
-      ruby2_keywords (~> 0.0.1)
-    nio4r (2.5.8)
-    puma (4.3.12)
-      nio4r (~> 2.0)
-    rack (2.2.3)
-    rack-protection (2.0.8.1)
-      rack
-    ruby2_keywords (0.0.2)
-    sinatra (2.0.8.1)
-      mustermann (~> 1.0)
-      rack (~> 2.0)
-      rack-protection (= 2.0.8.1)
-      tilt (~> 2.0)
-    tilt (2.0.10)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  cgi
+  dotenv
   homebus!
-  homebus_app!
-  mqtt
-  puma
-  sinatra
 
 BUNDLED WITH
-   2.1.2
+   2.3.11
