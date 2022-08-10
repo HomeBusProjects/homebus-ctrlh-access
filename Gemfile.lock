@@ -1,10 +1,15 @@
 GIT
   remote: https://github.com/HomeBusProjects/ruby-homebus
-  revision: 507710f5b9892f8726eaebc9c7c4d97a8b05f96d
-  tag: v0.22.0
+  revision: 661869af13158790a1cb6aa71357c9c3926c85bb
+  branch: main
   specs:
-    homebus (0.22.0)
+    homebus (0.30.1)
       mqtt (~> 0.5.0)
+
+PATH
+  remote: .
+  specs:
+    homebus-ctrlh-access (0.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -29,7 +34,8 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   dotenv
-  homebus!
+  homebus (>= 0.30.1)!
+  homebus-ctrlh-access!
 
 BUNDLED WITH
    2.3.5

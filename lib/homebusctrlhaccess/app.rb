@@ -1,11 +1,9 @@
-#!/usr/bin/env ruby
-
 require 'homebus'
 require 'homebus/state'
 
-require './message'
+require 'homebusctrlhaccess/message'
 
-class AccessHomebusApp < Homebus::App
+class HomebusCtrlhAccess::App < Homebus::App
   DDC = 'org.pdxhackerspace.experimental.access'
   DOORS = [ "front craft lab",  "laser-access",  "unit2",  "unit2 front door",  "unit3 back door"]
 
@@ -18,9 +16,6 @@ class AccessHomebusApp < Homebus::App
                                         model: "CTRLH Access",
                                         serial_number: door))
     end
-
-    @state = Homebus::State.new
-    @store = @state.store
   end
 
   def _find_door(door_name)
@@ -34,7 +29,7 @@ class AccessHomebusApp < Homebus::App
       exit
     end
 
-    msg = AccessMessage.new access_msg
+    msg = HomebusCtrlhAccess::Message.new access_msg
 
     payload = {
       door: msg.door,

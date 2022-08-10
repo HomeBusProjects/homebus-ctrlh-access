@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require '../options'
-require '../app'
+require 'homebusctrlhaccess/options'
+require 'homebusctrlhaccess/app'
 
-access_app_options = AccessHomebusAppOptions.new
+access_app_options = HomebusCtrlhAccess::Options.new
 
-access = AccessHomebusApp.new access_app_options.options
+access = HomebusCtrlhAccess::App.new access_app_options.options
 access.run!

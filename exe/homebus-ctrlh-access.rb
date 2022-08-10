@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require './options'
-require './app'
+require '../lib/options'
+require '../lib/app'
 
 access_app_options = AccessHomebusAppOptions.new
 

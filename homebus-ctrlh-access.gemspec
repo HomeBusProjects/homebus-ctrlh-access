@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "lib/version"
+require_relative "lib/homebusctrlhaccess/version"
 
 Gem::Specification.new do |spec|
   spec.name = "homebus-ctrlh-access"
-  spec.version = AccessHomebusApp::VERSION
+  spec.version = HomebusCtrlhAccess::VERSION
   spec.authors = ["John Romkey"]
   spec.email = ["58883+romkey@users.noreply.github.com"]
 

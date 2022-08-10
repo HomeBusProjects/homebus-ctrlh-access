@@ -1,6 +1,6 @@
 require 'homebus/options'
 
-class AccessHomebusAppOptions < Homebus::Options
+class HomebusCtrlhAccess::Options < Homebus::Options
   def app_options(op)
   end
 
