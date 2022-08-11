@@ -54,7 +54,7 @@ class HomebusCtrlhAccess::App < Homebus::App
 
     @state.state[:history][msg.door.to_sym].push(payload.clone)
     if(@state.state[:history][msg.door.to_sym].length > 10) then
-      @state.state[:history][msg.door.to_sym].unshift
+      @state.state[:history][msg.door.to_sym].shift
     end
 
     @state.commit!
