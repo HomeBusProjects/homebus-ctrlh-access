@@ -10,11 +10,21 @@ class HomebusCtrlhAccess::App < Homebus::App
   def setup!
     @devices = []
 
+    if !@state.state[:history]
+      @state.state[:history] = Hash.new
+      @state.commit!
+    end
+
     DOORS.each do |door|
       @devices.push(Homebus::Device.new(name: door,
                                         manufacturer: "Homebus",
                                         model: "CTRLH Access",
                                         serial_number: door))
+
+      if !@state.state[:history][door.to_sym] then
+        @state.state[:history][door.to_sym] = Array.new
+        @state.commit!
+      end
     end
   end
 
@@ -31,6 +41,10 @@ class HomebusCtrlhAccess::App < Homebus::App
 
     msg = HomebusCtrlhAccess::Message.new access_msg
 
+    unless msg.door
+      return
+    end
+
     payload = {
       door: msg.door,
       action: msg.action,
@@ -38,9 +52,14 @@ class HomebusCtrlhAccess::App < Homebus::App
       timestamp: msg.timestamp
     }
 
-    unless msg.door
-      return
+    @state.state[:history][msg.door.to_sym].push(payload.clone)
+    if(@state.state[:history][msg.door.to_sym].length > 10) then
+      @state.state[:history][msg.door.to_sym].unshift
     end
+
+    @state.commit!
+
+    payload[:history] = @state.state[:history][msg.door.to_sym]
 
     device = _find_door(msg.door)
     if device
