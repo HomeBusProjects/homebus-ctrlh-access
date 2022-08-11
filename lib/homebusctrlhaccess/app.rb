@@ -5,7 +5,7 @@ require 'homebusctrlhaccess/message'
 
 class HomebusCtrlhAccess::App < Homebus::App
   DDC = 'org.pdxhackerspace.experimental.access'
-  DOORS = [ "front craft lab",  "laser-access",  "unit2",  "unit2 front door",  "unit3 back door"]
+  DOORS = [ "front craft lab",  "laser-access",  "unit2",  "unit2 front door",  "unit3 back door", "all"]
 
   def setup!
     @devices = []
@@ -57,12 +57,23 @@ class HomebusCtrlhAccess::App < Homebus::App
       @state.state[:history][msg.door.to_sym].shift
     end
 
+    @state.state[:history][:all].push(payload.clone)
+    if(@state.state[:history][:all].length > 10) then
+      @state.state[:history][:all].shift
+    end
+
     @state.commit!
 
     payload[:history] = @state.state[:history][msg.door.to_sym]
 
     device = _find_door(msg.door)
     if device
+      device.publish! DDC, payload
+    end
+
+    device = _find_door('all')
+    if device
+      payload[:history] = @state.state[:history][:all]
       device.publish! DDC, payload
     end
   end
