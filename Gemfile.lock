@@ -1,10 +1,10 @@
 GIT
   remote: https://github.com/HomeBusProjects/ruby-homebus
-  revision: 661869af13158790a1cb6aa71357c9c3926c85bb
+  revision: 400534a58fab1b9537002aa9620e9afc77df8f08
   branch: main
   specs:
-    homebus (0.30.1)
-      mqtt (~> 0.5.0)
+    homebus (0.40.0)
+      paho-mqtt (~> 1.0.12)
 
 PATH
   remote: .
@@ -23,8 +23,8 @@ GEM
     dotenv (2.8.1)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
-    minitest (5.16.2)
-    mqtt (0.5.0)
+    minitest (5.16.3)
+    paho-mqtt (1.0.12)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
 
@@ -38,4 +38,4 @@ DEPENDENCIES
   homebus-ctrlh-access!
 
 BUNDLED WITH
-   2.3.19
+   2.3.21
