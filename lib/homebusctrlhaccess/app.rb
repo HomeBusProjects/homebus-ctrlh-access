@@ -36,12 +36,18 @@ class HomebusCtrlhAccess::App < Homebus::App
     access_msg = gets
 
     if access_msg == nil
+      if @options[:verbose]
+        puts 'no access message'
+      end
       exit
     end
 
     msg = HomebusCtrlhAccess::Message.new access_msg
 
     unless msg.door
+      if @options[:verbose]
+        puts 'no door'
+      end
       return
     end
 
@@ -57,24 +63,41 @@ class HomebusCtrlhAccess::App < Homebus::App
       @state.state[:history][msg.door.to_sym].shift
     end
 
-    @state.state[:history][:all].push(payload.clone)
-    if(@state.state[:history][:all].length > 10) then
-      @state.state[:history][:all].shift
+    if payload[:door] != 'laser-access'
+      @state.state[:history][:all].push(payload.clone)
+      if(@state.state[:history][:all].length > 10) then
+        @state.state[:history][:all].shift
+      end
     end
 
     @state.commit!
 
     payload[:history] = @state.state[:history][msg.door.to_sym]
+    if @options[:verbose]
+      pp payload
+    end
 
     device = _find_door(msg.door)
     if device
       device.publish! DDC, payload
+    else
+      if @options[:verbose]
+        puts 'no device found'
+      end
     end
 
     device = _find_door('all')
     if device
       payload[:history] = @state.state[:history][:all]
+      if @options[:verbose]
+        pp payload
+      end
+
       device.publish! DDC, payload
+    else
+      if @options[:verbose]
+        puts '"all" not found'
+      end
     end
   end
 
